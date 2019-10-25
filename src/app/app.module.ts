@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from "./app-routing/app-routing.module";
+import { DashboardComponent } from './dashboard/dashboard.component'; // <-- NgModel lives here
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AppRoutingModule } from "./app-routing/app-routing.module";
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
+    DashboardComponent // this was already set by the tutorial
   ],
   imports: [
     AppRoutingModule,
