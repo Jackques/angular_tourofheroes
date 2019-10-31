@@ -42,5 +42,19 @@ export class HeroService {
   * In the HTTP tutorial, you'll call HttpClient.get<Hero[]>() which also returns an Observable<Hero[]> that
   * emits a single value, an array of heroes from the body of the HTTP response.
   * */
+
+  getHero(id: number): Observable<Hero> {
+    // TODO: send the message _after_ fetching the hero
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    // Note the backticks ( ` ) that define a JavaScript template literal for embedding the id.
+    /* Template literals are string literals allowing embedded expressions. You can use multi-line strings and string interpolation features with them. They were called "template strings" in prior editions of the ES2015 specification. */
+    // ${} is the way vars are embedded in an template literal
+
+    return of(HEROES.find(hero => hero.id === id));
+    /*
+    Like getHeroes(), getHero() has an asynchronous signature. It returns a mock hero as an Observable, using the RxJS of() function.
+    You'll be able to re-implement getHero() as a real Http request without having to change the HeroDetailComponent that calls it.
+    * */
+  }
 }
 
