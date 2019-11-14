@@ -43,6 +43,19 @@ export class HeroService {
   * emits a single value, an array of heroes from the body of the HTTP response.
   * */
 
+  /** PUT: update the hero on the server */
+  updateHero (hero: Hero): Observable<any> {
+    // The overall structure of the updateHero() method is similar to that of getHeroes(),
+    // but it uses http.put() to persist the changed hero on the server. Add the following to the HeroService.
+
+    // The heroes web API expects a special header in HTTP save requests.
+    // That header is in the httpOptions constant defined in the HeroService
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
+
   getHero(id: number): Observable<Hero> {
     // TODO: send the message _after_ fetching the hero
     this.messageService.add(`HeroService: fetched hero id=${id}`);

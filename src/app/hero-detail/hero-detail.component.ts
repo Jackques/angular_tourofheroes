@@ -1,20 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core'; // it imports decorators?
-import { Hero } from '../hero';
-
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { Hero }         from '../hero';
 import { HeroService }  from '../hero.service';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.css']
+  styleUrls: [ './hero-detail.component.css' ]
 })
 
 export class HeroDetailComponent implements OnInit {
 
-  @Input() hero: Hero; //because the external HeroesComponent will bind to it like this.
+  hero: Hero; //because the external HeroesComponent will bind to it like this.
 
   constructor(private route: ActivatedRoute,
               private heroService: HeroService,
@@ -31,8 +30,15 @@ export class HeroDetailComponent implements OnInit {
 
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
+    // the '+' in front of this line converts the string result to a int, thus returning an int in id
+
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
+  }
+
+  save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
   }
 
   goBack(): void {
