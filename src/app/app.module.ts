@@ -13,6 +13,11 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 
 import { AppRoutingModule } from "./app-routing/app-routing.module";
+import { HeroSearchComponent } from './hero-search/hero-search.component';
+
+// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+// and returns simulated server responses.
+// Remove it when a real server is ready to receive requests.
 HttpClientInMemoryWebApiModule.forRoot(
   InMemoryDataService, { dataEncapsulation: false }
   // The forRoot() configuration method takes an InMemoryDataService class that primes the in-memory database
@@ -40,6 +45,7 @@ HttpClientInMemoryWebApiModule.forRoot(
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
+    HeroSearchComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
